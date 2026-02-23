@@ -5,8 +5,8 @@ import pandas as pd
 import datetime
 
 today = datetime.date.today()
-st.header("HeBA/Tirol/OSQ/Report")
-st.subheader(today)
+st.markdown("**HeBA/Tirol/OSQ/Report**")
+st.badge(str(today))
 
 lama_api_key= st.secrets["lamapoll_api_key"]
 
@@ -43,7 +43,7 @@ for entry in data:
     finished_participants.append(participants_data['finished'])
     visitors.append(participants_data['visitors'])
 
-st.write("Data extraction complete. Lists are ready for DataFrame creation.")
+st.success("Data extraction complete. Lists are ready for DataFrame creation.")
 
 df = pd.DataFrame({
     'Date': dates,
@@ -53,7 +53,6 @@ df = pd.DataFrame({
 })
 df = df.set_index('Date')
 
-st.write("DataFrame created successfully with 'Date' as index.")
+st.success("DataFrame created successfully with 'Date' as index.")
 #df.head()
-
 st.line_chart(df)
