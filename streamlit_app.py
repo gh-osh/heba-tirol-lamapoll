@@ -125,3 +125,12 @@ with tab1:
 with tab2:
     # Use the native Altair theme.
     st.altair_chart(chart, theme=None, use_container_width=True)
+
+data_gg = pd.DataFrame({'a': list('CCCDDDEEE'),
+                     'b': [2, 7, 4, 1, 2, 6, 8, 4, 7]})
+
+choo = alt.Chart(data).mark_bar().encode(
+    x='a',
+    y='average(b)'
+)
+st.altair_chart(choo, theme="streamlit", use_container_width=True)
