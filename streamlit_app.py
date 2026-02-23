@@ -56,3 +56,34 @@ df = df.set_index('Date')
 st.success("DataFrame created successfully with 'Date' as index.")
 #df.head()
 st.line_chart(df)
+
+## Devices data
+url = 'https://app.lamapoll.de/api/v2/polls/1965090/statistics'
+headers = {
+    'accept': 'application/json',
+    'Authorization': 'Bearer '+str(lama_api_key)
+}
+params = {
+    'include[]': 'userDevices'
+}
+
+try:
+    response = requests.get(url, headers=headers, params=params)
+    response.raise_for_status()  # Raise an HTTPError for bad responses (4xx or 5xx)
+    data_devices = response.json()
+    #print(json.dumps(data, indent=2))
+except requests.exceptions.RequestException as e:
+    print(f"Error making API request: {e}")
+except json.JSONDecodeError:
+    print(f"Error decoding JSON response. Response content: {response.text}")
+
+# Extract the userDevices data, which is a list of dictionaries
+devices_data = data_devices[0]['userDevices']
+
+# Create a DataFrame
+df_devices = pd.DataFrame(devices_data)
+
+print("DataFrame 'df_devices' created successfully.")
+# Display the first few rows of the DataFrame
+# df_devices.head()
+st.line_chart(df_devices)
