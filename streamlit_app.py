@@ -102,4 +102,4 @@ os = alt.Chart(df_devices).mark_bar().encode(
     x='os',
     y='sum(cnt)'
 )
-st.altair_chart(os, theme="streamlit", use_container_width=True, color='orange')
+st.altair_chart(os, theme="streamlit", use_container_width=True)
