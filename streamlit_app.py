@@ -86,51 +86,20 @@ devices_data = data_devices[0]['userDevices']
 df_devices = pd.DataFrame(devices_data)
 
 print("DataFrame 'df_devices' created successfully.")
-# Display the first few rows of the DataFrame
-# df_devices.head()
-#st.bar_chart(df_devices[['os','cnt']])
-device_counts = df_devices.groupby(['deviceType'])['cnt'].sum().reset_index()
-device_counts = device_counts.set_index('deviceType')
-st.bar_chart(device_counts)
-os_counts = df_devices.groupby(['os'])['cnt'].sum().reset_index()
-os_counts = os_counts.set_index('os')
-st.bar_chart(os_counts)
-browser_counts = df_devices.groupby(['browser'])['cnt'].sum().reset_index()
-browser_counts = browser_counts.set_index('browser')
-st.bar_chart(browser_counts, color='grey')
 
-#chart = alt.Chart(browser_counts).mark_bar().encode(
-#    x='browser',
-#    y='cnt'
-#).interactive
-
-#st.altair_chart(chart, theme="streamlit", use_container_width=True)
-
-from vega_datasets import data
-
-source = data.cars()
-
-chart = alt.Chart(source).mark_circle().encode(
-    x='Horsepower',
-    y='Miles_per_Gallon',
-    color='Origin',
-).interactive()
-
-tab1, tab2 = st.tabs(["Streamlit theme (default)", "Altair native theme"])
-
-with tab1:
-    # Use the Streamlit theme.
-    # This is the default. So you can also omit the theme argument.
-    st.altair_chart(chart, theme="streamlit", use_container_width=True)
-with tab2:
-    # Use the native Altair theme.
-    st.altair_chart(chart, theme=None, use_container_width=True)
-
-data_gg = pd.DataFrame({'a': list('CCCDDDEEE'),
-                     'b': [2, 7, 4, 1, 2, 6, 8, 4, 7]})
 st.dataframe(df_devices)
-choo = alt.Chart(df_devices).mark_bar().encode(
+browser = alt.Chart(df_devices).mark_bar().encode(
     x='browser',
     y='sum(cnt)'
 )
-st.altair_chart(choo, theme="streamlit", use_container_width=True)
+st.altair_chart(browser, theme="streamlit", use_container_width=True)
+devices = alt.Chart(df_devices).mark_bar().encode(
+    x='deviceType',
+    y='sum(cnt)'
+)
+st.altair_chart(devices, theme="streamlit", use_container_width=True)
+os = alt.Chart(df_devices).mark_bar().encode(
+    x='os',
+    y='sum(cnt)'
+)
+st.altair_chart(os, theme="streamlit", use_container_width=True)
