@@ -131,6 +131,6 @@ data_gg = pd.DataFrame({'a': list('CCCDDDEEE'),
 st.dataframe(data_gg)
 choo = alt.Chart(data_gg).mark_bar().encode(
     x='a',
-    y='average(b)'
+    y='b'
 )
 st.altair_chart(choo, theme="streamlit", use_container_width=True)
