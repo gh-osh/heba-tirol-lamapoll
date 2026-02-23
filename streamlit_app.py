@@ -60,8 +60,8 @@ import matplotlib.pyplot as plt
 # Set a larger figure size for better readability
 plt.figure(figsize=(12, 6))
 
-# Create the line plot with specified line styles
-df.plot(ax=plt.gca(), linewidth=2, style=['-', '--', ':'])
+# Create the line plot with specified line styles and colors
+df.plot(ax=plt.gca(), linewidth=2, style=['-', '--', ':'], color=['#1f77b4', '#aec7e8', '#4c78a8'])
 
 # Add plot title and labels
 plt.title('Daily Participant Trends Over Time', fontsize=16)
