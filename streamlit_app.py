@@ -86,4 +86,4 @@ df_devices = pd.DataFrame(devices_data)
 print("DataFrame 'df_devices' created successfully.")
 # Display the first few rows of the DataFrame
 # df_devices.head()
-st.line_chart(df_devices)
+st.bar_chart(df_devices[['os','cnt']])
