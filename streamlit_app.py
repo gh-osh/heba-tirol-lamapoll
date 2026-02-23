@@ -75,4 +75,4 @@ plt.legend(['Started Participants', 'Finished Participants', 'Visitors'], loc='u
 plt.tight_layout()
 
 # Display the plot
-plt.show()
+st.pyplot(plt.show())
