@@ -55,26 +55,4 @@ df = df.set_index('Date')
 st.write("DataFrame created successfully with 'Date' as index.")
 #df.head()
 
-import matplotlib.pyplot as plt
-
-# Set a larger figure size for better readability
-plt.figure(figsize=(12, 6))
-
-# Create the line plot with specified line styles and colors
-df.plot(ax=plt.gca(), linewidth=2, style=['-', '--', ':'], color=['#1f77b4', '#aec7e8', '#4c78a8'])
-
-# Add plot title and labels
-plt.title('Daily Participant Trends Over Time', fontsize=16)
-plt.xlabel('Date', fontsize=12)
-plt.ylabel('Number of Participants/Visitors', fontsize=12)
-
-# Add a legend
-plt.legend(['Started Participants', 'Finished Participants', 'Visitors'], loc='upper left', bbox_to_anchor=(1, 1))
-
-# Improve layout for legends outside the plot
-plt.tight_layout()
-
-# Display the plot
-st.pyplot(plt.show())
-
 st.line_chart(df)
