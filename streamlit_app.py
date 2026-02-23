@@ -86,4 +86,6 @@ df_devices = pd.DataFrame(devices_data)
 print("DataFrame 'df_devices' created successfully.")
 # Display the first few rows of the DataFrame
 # df_devices.head()
-st.bar_chart(df_devices[['os','cnt']])
+#st.bar_chart(df_devices[['os','cnt']])
+os_counts = df_devices.groupby(['deviceType'])['cnt'].sum().reset_index()
+st.bar_chart(os_counts)
