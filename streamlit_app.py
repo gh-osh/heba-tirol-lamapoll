@@ -87,7 +87,7 @@ df_devices = pd.DataFrame(devices_data)
 
 print("DataFrame 'df_devices' created successfully.")
 
-st.dataframe(df_devices)
+#st.dataframe(df_devices)
 browser = alt.Chart(df_devices).mark_bar().encode(
     x='browser',
     y='sum(cnt)'
@@ -102,4 +102,4 @@ os = alt.Chart(df_devices).mark_bar().encode(
     x='os',
     y='sum(cnt)'
 )
-st.altair_chart(os, theme="streamlit", use_container_width=True)
+st.altair_chart(os, theme="streamlit", use_container_width=True, color='orange')
