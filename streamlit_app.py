@@ -128,9 +128,9 @@ with tab2:
 
 data_gg = pd.DataFrame({'a': list('CCCDDDEEE'),
                      'b': [2, 7, 4, 1, 2, 6, 8, 4, 7]})
-st.dataframe(browser_counts)
-choo = alt.Chart(browser_counts).mark_bar().encode(
+st.dataframe(df_devices)
+choo = alt.Chart(df_devices).mark_bar().encode(
     x='browser',
-    y='cnt'
+    y='sum(cnt)'
 )
 st.altair_chart(choo, theme="streamlit", use_container_width=True)
