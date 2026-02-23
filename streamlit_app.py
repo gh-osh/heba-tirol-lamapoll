@@ -99,9 +99,29 @@ browser_counts = df_devices.groupby(['browser'])['cnt'].sum().reset_index()
 browser_counts = browser_counts.set_index('browser')
 st.bar_chart(browser_counts, color='grey')
 
-chart = alt.Chart(browser_counts).mark_bar().encode(
-    x='browser',
-    y='cnt'
-).interactive
+#chart = alt.Chart(browser_counts).mark_bar().encode(
+#    x='browser',
+#    y='cnt'
+#).interactive
 
-st.altair_chart(chart, theme="streamlit", use_container_width=True)
+#st.altair_chart(chart, theme="streamlit", use_container_width=True)
+
+from vega_datasets import data
+
+source = data.cars()
+
+chart = alt.Chart(source).mark_circle().encode(
+    x='Horsepower',
+    y='Miles_per_Gallon',
+    color='Origin',
+).interactive()
+
+tab1, tab2 = st.tabs(["Streamlit theme (default)", "Altair native theme"])
+
+with tab1:
+    # Use the Streamlit theme.
+    # This is the default. So you can also omit the theme argument.
+    st.altair_chart(chart, theme="streamlit", use_container_width=True)
+with tab2:
+    # Use the native Altair theme.
+    st.altair_chart(chart, theme=None, use_container_width=True)
