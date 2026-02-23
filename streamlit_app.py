@@ -3,6 +3,8 @@ import requests
 import json
 import pandas as pd
 import datetime
+import altair as alt
+
 
 today = datetime.date.today()
 st.markdown("**HeBA/Tirol/OSQ/Report**")
@@ -96,3 +98,10 @@ st.bar_chart(os_counts)
 browser_counts = df_devices.groupby(['browser'])['cnt'].sum().reset_index()
 browser_counts = browser_counts.set_index('browser')
 st.bar_chart(browser_counts, color='grey')
+
+chart = alt.Chart(browser_counts).mark_bar().encode(
+    x='browser',
+    y='cnt'
+).interactive
+
+st.altair_chart(chart, theme="streamlit", use_container_width=True)
