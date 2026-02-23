@@ -1,11 +1,13 @@
 import streamlit as st
-
-st.title("Tirol")
-st.write(
-    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
-)
 import requests
 import json
+import pandas as pd
+import datetime
+
+today = datetime.date.today()
+st.header("HeBA/Tirol/OSQ/Report")
+st.subheader(today)
+
 lama_api_key= st.secrets["lamapoll_api_key"]
 
 url = 'https://app.lamapoll.de/api/v2/polls/1965090/statistics'
@@ -28,7 +30,6 @@ except requests.exceptions.RequestException as e:
 except json.JSONDecodeError:
     st.write(f"Error decoding JSON response. Response content: {response.text}")
 
-import pandas as pd
 
 dates = []
 started_participants = []
