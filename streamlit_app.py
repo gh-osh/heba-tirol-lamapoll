@@ -129,7 +129,7 @@ with tab2:
 data_gg = pd.DataFrame({'a': list('CCCDDDEEE'),
                      'b': [2, 7, 4, 1, 2, 6, 8, 4, 7]})
 
-choo = alt.Chart(data).mark_bar().encode(
+choo = alt.Chart(data_gg).mark_bar().encode(
     x='a',
     y='average(b)'
 )
