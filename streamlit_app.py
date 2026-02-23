@@ -27,6 +27,7 @@ try:
     response.raise_for_status()  # Raise an HTTPError for bad responses (4xx or 5xx)
     data = response.json()
     #print(json.dumps(data, indent=2))
+    st.success('API request successful. Data retrieved and parsed as JSON.')
 except requests.exceptions.RequestException as e:
     st.write(f"Error making API request: {e}")
 except json.JSONDecodeError:
@@ -45,7 +46,7 @@ for entry in data:
     finished_participants.append(participants_data['finished'])
     visitors.append(participants_data['visitors'])
 
-st.success("Data extraction complete. Lists are ready for DataFrame creation.")
+#st.success("Data extraction complete. Lists are ready for DataFrame creation.")
 
 df = pd.DataFrame({
     'Date': dates,
@@ -55,7 +56,7 @@ df = pd.DataFrame({
 })
 df = df.set_index('Date')
 
-st.success("DataFrame created successfully with 'Date' as index.")
+#st.success("DataFrame created successfully with 'Date' as index.")
 #df.head()
 st.line_chart(df)
 
