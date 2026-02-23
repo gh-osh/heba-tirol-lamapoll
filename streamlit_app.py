@@ -58,7 +58,7 @@ df = df.set_index('Date')
 
 #st.success("DataFrame created successfully with 'Date' as index.")
 #df.head()
-st.line_chart(df, color=['blue', 'green', '#9CD5FF'])
+st.line_chart(df, color=['#7AAACE', '#355872', '#9CD5FF'])
 
 ## Devices data
 url = 'https://app.lamapoll.de/api/v2/polls/1965090/statistics'
