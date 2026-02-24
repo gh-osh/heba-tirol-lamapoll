@@ -87,20 +87,25 @@ devices_data = data_devices[0]['userDevices']
 df_devices = pd.DataFrame(devices_data)
 
 print("DataFrame 'df_devices' created successfully.")
-
 #st.dataframe(df_devices)
-browser = alt.Chart(df_devices).mark_bar().encode(
-    x='browser',
-    y='sum(cnt)'
-)
-st.altair_chart(browser, theme="streamlit", use_container_width=True)
-devices = alt.Chart(df_devices).mark_bar().encode(
-    x='deviceType',
-    y='sum(cnt)'
-)
-st.altair_chart(devices, theme="streamlit", use_container_width=True)
-os = alt.Chart(df_devices).mark_bar().encode(
-    x='os',
-    y='sum(cnt)'
-)
-st.altair_chart(os, theme="streamlit", use_container_width=True)
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    browser = alt.Chart(df_devices).mark_bar().encode(
+        x='browser',
+        y='sum(cnt)'
+    )
+    st.altair_chart(browser, theme="streamlit", use_container_width=True)
+with col2:
+    devices = alt.Chart(df_devices).mark_bar().encode(
+        x='deviceType',
+        y='sum(cnt)'
+    )
+    st.altair_chart(devices, theme="streamlit", use_container_width=True)
+with col3:
+    os = alt.Chart(df_devices).mark_bar().encode(
+        x='os',
+        y='sum(cnt)'
+    )
+    st.altair_chart(os, theme="streamlit", use_container_width=True)
