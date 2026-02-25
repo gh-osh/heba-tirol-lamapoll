@@ -55,6 +55,15 @@ df = pd.DataFrame({
     'Visitors': visitors
 })
 df = df.set_index('Date')
+visitors_total = df['Visitors'].sum()
+started_total = df['Started'].sum()
+finished_total = df['Finished'].sum()
+
+col1, col2, col3 = st.columns(3)
+col1.metric("Total Visitors", visitors_total)
+col2.metric("Total Started", started_total)
+col3.metric("Total Finished", finished_total)
+
 
 #st.success("DataFrame created successfully with 'Date' as index.")
 #df.head()
