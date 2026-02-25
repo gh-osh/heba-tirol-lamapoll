@@ -61,8 +61,8 @@ finished_total = df['Finished'].sum()
 
 col1, col2, col3 = st.columns(3)
 col1.metric("Total Visitors", visitors_total)
-col2.metric("Total Started", started_total)
-col3.metric("Total Finished", finished_total)
+col2.metric("Total Started", started_total, delta=str(round((started_total/visitors_total)*100, 2))+"% of visitors", delta_arrow="off")
+col3.metric("Total Finished", finished_total, delta=str(round((finished_total/started_total)*100, 2))+"% of started", delta_arrow="off")
 
 
 #st.success("DataFrame created successfully with 'Date' as index.")
