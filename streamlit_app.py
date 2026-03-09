@@ -40,7 +40,6 @@ headers_mailing = {
     'Authorization': 'Bearer '+str(lama_api_key)
 }
 params_mailing = {
-    'limit': 50,
     'offset': 0,
     'status': 'done'
 }
