@@ -1,2 +1,4 @@
 [theme]
 base="light"
+primaryColor ="rgb(30, 52, 70)"
+textColor ="rgb(30, 52, 70)"

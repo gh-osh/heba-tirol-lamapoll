@@ -7,7 +7,9 @@ import altair as alt
 
 st.logo("https://github.com/ghoshted/biocore_cti_artefacts/blob/main/UNI_Logo_Inter_LCSB_rgb2.png?raw=true", size="large")
 today = datetime.date.today()
-st.sidebar.markdown("**HeBA/Tirol/OSQ/Report**")
+st.sidebar.markdown("**Healthy Brain Ageing (HeBA) Study | Reports**")
+st.sidebar.caption("This dashboard provides insights into the HeBA/Tirol/OSQ survey data, including participant engagement and device usage statistics. The data is sourced from the LamaPoll API and is updated regularly to reflect the latest trends and patterns in participant behavior.")
+st.sidebar.caption("Contact: [LCSB](https://www.uni.lu/lcsb) | soumyabrata.ghosh@uni.lu")
 st.markdown("### HeBA/Tirol/OSQ/Report")
 st.badge(str(today))
 
