@@ -12,49 +12,64 @@ st.markdown("### HeBA/Tirol/OSQ/Report")
 st.badge(str(today))
 
 lama_api_key= st.secrets["lamapoll_api_key"]
+def get_lama_response_data(lama_api_key):
+    url = 'https://app.lamapoll.de/api/v2/polls/1965090/statistics'
+    headers = {
+        'accept': 'application/json',
+        'Authorization': 'Bearer '+str(lama_api_key)
+    }
+    params = {
+        'interval': 'day',
+        'include[]': 'participants'
+    }
 
-url = 'https://app.lamapoll.de/api/v2/polls/1965090/statistics'
-headers = {
-    'accept': 'application/json',
-    'Authorization': 'Bearer '+str(lama_api_key)
-}
-params = {
-    'interval': 'day',
-    'include[]': 'participants'
-}
+    try:
+        response = requests.get(url, headers=headers, params=params)
+        response.raise_for_status()  # Raise an HTTPError for bad responses (4xx or 5xx)
+        data = response.json()
+        #print(json.dumps(data, indent=2))
+        #st.success('API request successful. Data retrieved and parsed as JSON.')
+    except requests.exceptions.RequestException as e:
+        st.write(f"Error making API request: {e}")
+    except json.JSONDecodeError:
+        st.write(f"Error decoding JSON response. Response content: {response.text}")
+    return data
 
-try:
-    response = requests.get(url, headers=headers, params=params)
-    response.raise_for_status()  # Raise an HTTPError for bad responses (4xx or 5xx)
-    data = response.json()
-    #print(json.dumps(data, indent=2))
-    #st.success('API request successful. Data retrieved and parsed as JSON.')
-except requests.exceptions.RequestException as e:
-    st.write(f"Error making API request: {e}")
-except json.JSONDecodeError:
-    st.write(f"Error decoding JSON response. Response content: {response.text}")
+data = get_lama_response_data(lama_api_key)
 
-url_mailing = 'https://app.lamapoll.de/api/v2/polls/1965090/mailings'
 
-headers_mailing = {
-    'accept': 'application/json',
-    'Authorization': 'Bearer '+str(lama_api_key)
-}
-params_mailing = {
-    'offset': 6,
-    'status': 'done'
-}
-try:
-    response_mailing = requests.get(url_mailing, headers=headers_mailing, params=params_mailing)
-    response_mailing.raise_for_status()  # Raise an HTTPError for bad responses (4xx or 5xx)
-    data_mailing = response_mailing.json()
-    #print(json.dumps(data_mailing, indent=2))
-    #st.success('API request for mailings successful. Data retrieved and parsed as JSON.')
-except requests.exceptions.RequestException as e:
-    st.write(f"Error making API request for mailings: {e}")
-except json.JSONDecodeError:
-    st.write(f"Error decoding JSON response for mailings. Response content: {response_mailing.text}")
+def get_lama_response_data_mailing(lama_api_key):
+    url_mailing = 'https://app.lamapoll.de/api/v2/polls/1965090/mailings'
+
+    headers_mailing = {
+        'accept': 'application/json',
+        'Authorization': 'Bearer '+str(lama_api_key)
+    }
+    params_mailing = {
+        'offset': 6,
+        'status': 'done'
+    }
+    try:
+        response_mailing = requests.get(url_mailing, headers=headers_mailing, params=params_mailing)
+        response_mailing.raise_for_status()  # Raise an HTTPError for bad responses (4xx or 5xx)
+        data_mailing = response_mailing.json()
+        #print(json.dumps(data_mailing, indent=2))
+        #st.success('API request for mailings successful. Data retrieved and parsed as JSON.')
+    except requests.exceptions.RequestException as e:
+        st.write(f"Error making API request for mailings: {e}")
+    except json.JSONDecodeError:
+        st.write(f"Error decoding JSON response for mailings. Response content: {response_mailing.text}")
+    return data_mailing
+
+data_mailing = get_lama_response_data_mailing(lama_api_key)
+
+if st.button("Refresh Data", type="primary"):
+    data = get_lama_response_data(lama_api_key)
+    data_mailing = get_lama_response_data_mailing(lama_api_key)
+
+
 df_mailing = pd.DataFrame(data_mailing)
+
 
 #df_mailing = df_mailing[df_mailing['attributes'].str.contains('Tirol|TIROL', case=False, na=False)]
 # Convert attributes to string first, then filter
