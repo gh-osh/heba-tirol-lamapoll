@@ -6,7 +6,7 @@ import datetime
 import altair as alt
 
 with st.sidebar:
-    st.image("https://res.cloudinary.com/dpr5x9upe/image/upload/v1773355468/lcsb_cti_logo_yoefzu.png", size="large")
+    st.image("https://res.cloudinary.com/dpr5x9upe/image/upload/v1773355468/lcsb_cti_logo_yoefzu.png")
 
     st.markdown("**Healthy Brain Ageing (HeBA) Study | Reports**")
     st.caption("This dashboard provides insights into the HeBA/Tirol/OSQ survey data, including participant engagement and device usage statistics. The data is sourced from the LamaPoll API and is updated regularly to reflect the latest trends and patterns in participant behavior.")
