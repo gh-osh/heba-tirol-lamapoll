@@ -5,12 +5,15 @@ import pandas as pd
 import datetime
 import altair as alt
 
-st.sidebar.image("https://res.cloudinary.com/dpr5x9upe/image/upload/v1773355468/lcsb_cti_logo_yoefzu.png", size="large")
-today = datetime.date.today()
-st.sidebar.markdown("**Healthy Brain Ageing (HeBA) Study | Reports**")
-st.sidebar.caption("This dashboard provides insights into the HeBA/Tirol/OSQ survey data, including participant engagement and device usage statistics. The data is sourced from the LamaPoll API and is updated regularly to reflect the latest trends and patterns in participant behavior.")
-st.sidebar.caption("Contact: [LCSB](https://www.uni.lu/lcsb) | soumyabrata.ghosh@uni.lu")
+with st.sidebar:
+    st.image("https://res.cloudinary.com/dpr5x9upe/image/upload/v1773355468/lcsb_cti_logo_yoefzu.png", size="large")
+
+    st.markdown("**Healthy Brain Ageing (HeBA) Study | Reports**")
+    st.caption("This dashboard provides insights into the HeBA/Tirol/OSQ survey data, including participant engagement and device usage statistics. The data is sourced from the LamaPoll API and is updated regularly to reflect the latest trends and patterns in participant behavior.")
+    st.caption("Contact: [LCSB](https://www.uni.lu/lcsb) | soumyabrata.ghosh@uni.lu")
 st.markdown("### HeBA/Tirol/OSQ/Report")
+
+today = datetime.date.today()
 st.badge(str(today))
 
 lama_api_key= st.secrets["lamapoll_api_key"]
