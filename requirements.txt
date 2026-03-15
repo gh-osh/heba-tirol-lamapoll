@@ -1,4 +1,3 @@
 streamlit
 matplotlib
 altair
-vega_datasets
