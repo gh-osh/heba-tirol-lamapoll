@@ -10,7 +10,7 @@ with st.sidebar:
 
     st.markdown("**Healthy Brain Ageing (HeBA) Study | Reports**")
     st.caption("This dashboard provides insights into the HeBA/Tirol/OSQ survey data, including participant engagement and device usage statistics. The data is sourced from the LamaPoll API and is updated regularly to reflect the latest trends and patterns in participant behavior.")
-    st.caption("Contact: [LCSB](https://www.uni.lu/lcsb) | soumyabrata.ghosh@uni.lu")
+    st.caption("[LCSB](https://www.uni.lu/lcsb) | soumyabrata.ghosh@uni.lu")
 st.markdown("### HeBA/Tirol/OSQ/Report")
 
 today = datetime.date.today()
