@@ -133,12 +133,19 @@ def lamapoll_question_results_barchart(lama_api_key, poll_id, question_id, categ
         y=alt.Y('Count:Q', title='Number of Responses'),
         color='Category:N'
     ).properties(
-        width=600,
-        height=400,
+       # width=600,
+       # height=400,
         title=f"Survey Responses by {category_name}"
     )
+    sex_chart.configure_legend(
+        strokeColor='gray',
+        fillColor='#EEEEEE',
+        padding=10,
+        cornerRadius=10,
+        orient='top-right'
+        )
 
-    st.altair_chart(sex_chart, use_container_width=True)
+    st.altair_chart(sex_chart, theme="streamlit", use_container_width=True)
 
     # Also display the data in a table
     #st.dataframe(df_sex, use_container_width=True)
@@ -263,5 +270,10 @@ with col3:
 #
 # st_echarts(options=options, height="400px")
 
-
-lamapoll_question_results_barchart(lama_api_key, poll_id, 29603193,"Gender")
+col4, col5, col6 = st.columns(3)
+with col4:
+    lamapoll_question_results_barchart(lama_api_key, poll_id, 29603193,"Gender")
+with col5:
+    lamapoll_question_results_barchart(lama_api_key, poll_id, 29603199,"Hyposmia")
+with col6:
+    lamapoll_question_results_barchart(lama_api_key, poll_id, 29603202,"RBDSQ")
