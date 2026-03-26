@@ -262,7 +262,7 @@ with col3:
 #
 # st_echarts(options=options, height="400px")
 
-col4, col5, col6, col7 = st.tabs(["Gender", "Hyposmia", "RBDSQ", "Memory Loss"])
+col4, col5, col6, col7, col8, col9 = st.tabs(["Gender", "Hyposmia", "RBDSQ", "Memory Loss", "Family History of PD", "Family member with PD"])
 
 with col4:
     lamapoll_question_results_barchart(lama_api_key, poll_id, 29603193,"Gender")
@@ -272,3 +272,7 @@ with col6:
     lamapoll_question_results_barchart(lama_api_key, poll_id, 29603202,"RBDSQ")
 with col7:
     lamapoll_question_results_barchart(lama_api_key, poll_id, 29603205,"Memory Loss")
+with col8:
+    lamapoll_question_results_barchart(lama_api_key, poll_id, 29603208,"Family History of PD")
+with col9:
+    lamapoll_question_results_barchart(lama_api_key, poll_id, 29603211,"Family member with PD")
