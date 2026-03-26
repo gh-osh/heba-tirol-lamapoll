@@ -136,18 +136,11 @@ def lamapoll_question_results_barchart(lama_api_key, poll_id, question_id, categ
        # width=600,
        # height=400,
         title=f"Survey Responses by {category_name}"
-    ).configure_legend(
-        strokeColor='gray',
-        fillColor="#F2FDFF",
-        padding=5,
-        cornerRadius=5,
-        orient='bottom'
     )
-
     st.altair_chart(sex_chart, theme="streamlit", use_container_width=True)
 
     # Also display the data in a table
-    #st.dataframe(df_sex, use_container_width=True)
+    st.dataframe(df_sex, use_container_width=True)
 
 
 #if st.button("Refresh Data", type="primary"):
