@@ -63,6 +63,7 @@ def get_lama_response_data_mailing(lama_api_key,poll_id):
         #st.success('API request for mailings successful. Data retrieved and parsed as JSON.')
     except requests.exceptions.RequestException as e:
         st.warning(f"Error making API request for mailings: {e}")
+        st.toast("Some API requests failed from Lamapoll side.", icon="⚠️", duration="long")
     except json.JSONDecodeError:
         st.warning(f"Error decoding JSON response for mailings. Response content: {response_mailing.text}")
     return data_mailing
